@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mapper">
+
+	<select id="test04" resultType="int">
+		select * from table03
+		<!-- select * from table04 -->
+	</select>
+
+	<insert id="test01" parameterType="int">
+		insert into table03(age) values (#{age})
+		<!-- insert into table03(name, age) values (#{name}, #{age}) -->
+	</insert>
+	
+	<delete id="test02" parameterType="int">
+		delete from table03 where (age) = (#{age})
+		<!-- delete from table03 where (age) = (#{age}) -->
+	</delete>
+	
+	<update id="test03" parameterType="int">
+		update table03 set age = 777 where age = #{age}
+		<!-- update table03 set age = 777 where age = #{name} -->
+	</update>
+	
+	<!-- Person 객체로 인수전달 -->
+	<insert id="test05" parameterType="Pack.Person">
+		insert into table04(name, age) 
+		values (#{name}, #{age})
+	</insert>
+	
+	<delete id="test06" parameterType="Pack.Person">
+		delete from table04
+		where (name) = (#{name})
+	</delete>
+	
+	<update id="test07" parameterType="Pack.Person">
+		update table04
+		set age = 24
+		<!-- set name = "독수리" , age = 20  -->
+		where name = #{name}
+	</update>
+	
+	<select id="test08" resultType="Pack.Person">
+		select * from table04
+	</select>
+</mapper>
